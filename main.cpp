@@ -11,7 +11,6 @@ int choice;
 
 
 int display_board() {
-    system("cls");
     cout << "   T I C  T A C  G A M E  " << endl;
     cout<<"================================="<<endl;
     cout<<"   PLAYER 1 = [x]" <<endl;
@@ -19,7 +18,7 @@ int display_board() {
     cout<<"   PLAYER 2 = [o]"<< endl;
 
 
-    cout<<"\n \n \n \n";
+    cout<<"\n";
     cout<<"     "<<"     |       |       "<<endl;
     cout<<"     "<<"  "<<board[0][0]<<"  |   "<<board[0][1]<<"   |   "<<board[0][2]<<"   "<<endl;
     cout<<"   "<<"_______|_______|_______"<<endl;
@@ -29,7 +28,7 @@ int display_board() {
     cout<<"     "<<"     |       |       "<<endl;
     cout<<"     "<<"  "<<board[2][0]<<"  |   "<<board[2][1]<<"   |   "<<board[2][2]<<"   "<<endl;
     cout<<"     "<<"     |       |       "<<endl;
-    cout<<"\n \n \n \n";
+    cout<<"\n";
 return 0;
 
 };
@@ -53,20 +52,35 @@ bool game_over(){
 
 
 
-
     for(int i=0;i<3;i++)
-    if( (board[i][0]==board[i][1]&&board[i][1]==board[i][2])||(board[0][i]==board[1][i]&&board[1][i]==board[2][i])||(board[0][0]==board[1][1]&&board[1][1]==board[2][2])||(board[2][0]==board[1][1]&&board[1][1]==board[0][2])){
-    return false;
+    {
+        if((board[i][0]==board[i][1]&&board[i][1]==board[i][2])||(board[0][i]==board[1][i]&&board[1][i]==board[2][i])||(board[0][0]==board[1][1]&&board[1][1]==board[2][2])||(board[2][0]==board[1][1]&&board[1][1]==board[0][2]))
+        {
+        return false;
+        }
     }
 
      for(int i=0;i<3;i++)
-    for(int j=0;j<3;j++)
-    if (board[i][j]!='x'||board[i][j]!='o')
-    return true;
-
-
-
-
+     {
+        for(int j=0;j<3;j++)
+        {
+            if (board[i][j]!='x')
+            {
+                if(board[i][j]!='o')
+                {
+                    return true;
+                }
+            }
+            else if (board[i][j]!='o')
+            {
+                if(board[i][j]!='x')
+                {
+                    return true;
+                }
+            }
+        }
+    }
+    cout<<"Game Drawn!!\n";
     draw = true;
     return false;
 
